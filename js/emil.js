@@ -32,7 +32,8 @@ stop.addEventListener("click", function() {
 	status = null;
 	clearCanvas();
 	renderTime(frame, 0);
-	bollGul.reset();
+	bollYellow.reset();
+	bollBlue.reset();
 	play.textContent = "Play";
 }, true);
 
@@ -55,7 +56,8 @@ function timeline() {
 	//console.log("Seconds elapsed = " + ms/1000);
 
 	clearCanvas();
-	bollGul.animate(frame);
+	bollYellow.animate(frame);
+	bollBlue.animate(frame);
 	renderTime(frame, ms);
 
 	if (frame == numberOfFrames) {
@@ -76,7 +78,7 @@ function renderTime(f, time) {
 	ctx.fillText("Frame: " + f + ", Time elapsed: " + time/1000 + "s", 4, 20);
 }
 
-var bollGul = {
+var bollYellow = {
 	color: "rgb(222,175,72)",
 	x: 315,
 	y: 235,
@@ -84,13 +86,39 @@ var bollGul = {
 	speed: 0,
 	animate: function(f) {
 		ctx.beginPath();
-	    ctx.arc(bollGul.x, bollGul.y, bollGul.size, 0, 2*Math.PI);
-	    ctx.fillStyle = bollGul.color;
+	    ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI);
+	    ctx.fillStyle = this.color;
 	    ctx.fill();	
 	},
 	reset: function() {
-		boll.x = 0;
+		this.x = 0;
 	}
 }
 
+var bollBlue = {
+	color: "rgb(99,105,175)",
+	x: 315,
+	y: 50,
+	radius: 185,
+	a: 0,
+	start: 0,
+	end: 200,
+	speed: 4,
+	size: 40,
+	animate: function(f) {
+		if (f >= this.start && f <= this.end) {
+		ctx.beginPath();
+		ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI);
+		ctx.fillStyle = this.color;
+		ctx.fill();
 
+		this.x += this.x + (this.radius * Math.cos(this.a));
+		this.y += this.y + (this.radius * Math.sin(this.a));
+		this.a += this.a + 1;
+
+		}
+	},
+	reset: function(){
+		this.x = 0;
+	}
+}
