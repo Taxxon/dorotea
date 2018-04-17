@@ -100,7 +100,7 @@ var bollBlue = {
 	x: 315,
 	y: 50,
 	radius: 185,
-	a: 0,
+	angle: 0,
 	start: 0,
 	end: 200,
 	speed: 4,
@@ -112,9 +112,9 @@ var bollBlue = {
 		ctx.fillStyle = this.color;
 		ctx.fill();
 
-		this.x += this.x + (this.radius * Math.cos(this.a));
-		this.y += this.y + (this.radius * Math.sin(this.a));
-		this.a += this.a + 1;
+		this.x = this.x + (this.radius * Math.cos(this.angle));
+		this.y = this.y + (this.radius * Math.sin(this.angle));
+		this.angle++;
 
 		}
 	},
