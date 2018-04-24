@@ -91,7 +91,8 @@ var bollYellow = {
 	    ctx.fill();	
 	},
 	reset: function() {
-		this.x = 0;
+		this.x = 315;
+		this.y = 235;
 	}
 }
 
@@ -101,6 +102,7 @@ var bollBlue = {
 	y: 50,
 	radius: 185,
 	angle: 0,
+	speed: .01,
 	start: 0,
 	end: 200,
 	speed: 4,
@@ -114,11 +116,14 @@ var bollBlue = {
 
 		this.x = this.x + (this.radius * Math.cos(this.angle));
 		this.y = this.y + (this.radius * Math.sin(this.angle));
-		this.angle++;
+		this.angle += speed;
+
+		console.log(this.x + " " + this.y);
 
 		}
 	},
 	reset: function(){
-		this.x = 0;
+		this.x = 315;
+		this.y = 50;
 	}
 }
