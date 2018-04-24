@@ -132,7 +132,7 @@ var outLine = {
 	color: "rgb(157,76,110)",
 	x: 315,
 	y: 235,
-	size: 205,
+	size: 200,
 	animate: function(f) {
 		ctx.beginPath();
 		ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI);
