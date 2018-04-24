@@ -80,6 +80,11 @@ function renderTime(f, time) {
 	ctx.fillText("Frame: " + f + ", Time elapsed: " + time/1000 + "s", 4, 20);
 }
 
+/**
+Ritar ut en gul boll som ska reprecentera centrum.
+Bollen är fast ritad och rör inte på sig.
+När animationen börjar om ritas bollen ut på samma ställe genom att sätta x,y till samma värde.
+**/
 var bollYellow = {
 	color: "rgb(222,175,72)",
 	x: 315,
@@ -97,6 +102,12 @@ var bollYellow = {
 	}
 }
 
+/**
+Ritar ut en blå boll som roterar i en cirkulär rörelse runt den gula bollen
+För varje frame ändras vinkeln med 0.05 radianer som är hastigheten.
+Den tar reda på positionen (x,y) där bollen ska ritas ut beroende på vinkel från mitten.
+När animationen börjar om sätter den x,t till samma värde som när den starta och vinkeln så att den roterar åt rätt håll.
+**/
 var bollBlue = {
 	color: "rgb(99,105,175)",
 	xstart: 315,
@@ -104,10 +115,10 @@ var bollBlue = {
 	x: 0,
 	y: 0,
 	radius: 200,
-	angle: 0,
+	angle: -(Math.PI/2),
 	start: 0,
 	end: 200,
-	speed: 0.05,
+	speed: -0.05,
 	size: 40,
 	animate: function(f) {
 		if (f >= this.start && f <= this.end) {
@@ -124,10 +135,16 @@ var bollBlue = {
 	reset: function(){
 		this.x = 315;
 		this.y = 35;
-		this.angle = 0;
+		this.angle = 180;
 	}
 }
 
+/**
+Ritar ut en cirkel som inte är fylld
+Cirkeln är tänkt att vara rotationsbanan
+Om animationen startas om ritas den ut på samma ställe
+Den rör inte på sig
+**/
 var outLine = {
 	color: "rgb(157,76,110)",
 	x: 315,
