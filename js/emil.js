@@ -106,6 +106,9 @@ var bollYellow = {
 Ritar ut en blå boll som roterar i en cirkulär rörelse runt den gula bollen
 För varje frame ändras vinkeln med 0.05 radianer som är hastigheten.
 Den tar reda på positionen (x,y) där bollen ska ritas ut beroende på vinkel från mitten.
+Första if satsen tittar så att den inte har gått ett varv.
+Om den inte gått ett varv roterar den runt den gula bollen.
+När den har åkt ett var går den till nästa if sats som bara flytta bollen till vänster (-x).
 När animationen börjar om sätter den x,t till samma värde som när den starta och vinkeln så att den roterar åt rätt håll.
 **/
 var bollBlue = {
@@ -163,7 +166,7 @@ var outLine = {
 	animate: function(f) {
 		ctx.beginPath();
 		ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI);
-		ctx.fillStyle = this.color;
+		ctx.strokeStyle = this.color;
 		ctx.lineWidth = 5;
 		ctx.stroke();
 	},
