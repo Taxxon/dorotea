@@ -99,13 +99,12 @@ var bollYellow = {
 var bollBlue = {
 	color: "rgb(99,105,175)",
 	x: 315,
-	y: 50,
-	radius: 185,
+	y: 35,
+	radius: 10,
 	angle: 0,
-	speed: .01,
 	start: 0,
 	end: 200,
-	speed: 4,
+	speed: 0.05,
 	size: 40,
 	animate: function(f) {
 		if (f >= this.start && f <= this.end) {
@@ -114,9 +113,9 @@ var bollBlue = {
 		ctx.fillStyle = this.color;
 		ctx.fill();
 
-		this.x = this.x + (this.radius * Math.cos(this.angle));
-		this.y = this.y + (this.radius * Math.sin(this.angle));
-		this.angle += speed;
+		this.x = this.x + Math.cos(this.angle) * this.radius;
+		this.y = this.y + Math.sin(this.angle) * this.radius;
+		this.angle += this.speed;
 
 		console.log(this.x + " " + this.y);
 
@@ -124,6 +123,7 @@ var bollBlue = {
 	},
 	reset: function(){
 		this.x = 315;
-		this.y = 50;
+		this.y = 35;
+		this.angle = 0;
 	}
 }
