@@ -34,6 +34,7 @@ stop.addEventListener("click", function() {
 	renderTime(frame, 0);
 	bollYellow.reset();
 	bollBlue.reset();
+	outLine.reset();
 	play.textContent = "Play";
 }, true);
 
@@ -58,6 +59,7 @@ function timeline() {
 	clearCanvas();
 	bollYellow.animate(frame);
 	bollBlue.animate(frame);
+	outLine.animate(frame);
 	renderTime(frame, ms);
 
 	if (frame == numberOfFrames) {
@@ -83,7 +85,6 @@ var bollYellow = {
 	x: 315,
 	y: 235,
 	size: 30,
-	speed: 0,
 	animate: function(f) {
 		ctx.beginPath();
 	    ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI);
@@ -98,9 +99,11 @@ var bollYellow = {
 
 var bollBlue = {
 	color: "rgb(99,105,175)",
-	x: 315,
-	y: 35,
-	radius: 10,
+	xstart: 315,
+	ystart: 235,
+	x: 0,
+	y: 0,
+	radius: 200,
 	angle: 0,
 	start: 0,
 	end: 200,
@@ -108,22 +111,37 @@ var bollBlue = {
 	size: 40,
 	animate: function(f) {
 		if (f >= this.start && f <= this.end) {
+		this.x = this.xstart + Math.cos(this.angle) * this.radius;
+		this.y = this.ystart + Math.sin(this.angle) * this.radius;
+		this.angle += this.speed;
+
 		ctx.beginPath();
 		ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI);
 		ctx.fillStyle = this.color;
 		ctx.fill();
-
-		this.x = this.x + Math.cos(this.angle) * this.radius;
-		this.y = this.y + Math.sin(this.angle) * this.radius;
-		this.angle += this.speed;
-
-		console.log(this.x + " " + this.y);
-
 		}
 	},
 	reset: function(){
 		this.x = 315;
 		this.y = 35;
 		this.angle = 0;
+	}
+}
+
+var outLine = {
+	color: "rgb(157,76,110)",
+	x: 315,
+	y: 235,
+	size: 205,
+	animate: function(f) {
+		ctx.beginPath();
+		ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI);
+		ctx.fillStyle = this.color;
+		ctx.lineWidth = 5;
+		ctx.stroke();
+	},
+	reset: function(){
+		this.x = 315;
+		this.y = 235;
 	}
 }
