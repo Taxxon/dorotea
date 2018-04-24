@@ -122,20 +122,30 @@ var bollBlue = {
 	size: 40,
 	animate: function(f) {
 		if (f >= this.start && f <= this.end) {
-		this.x = this.xstart + Math.cos(this.angle) * this.radius;
-		this.y = this.ystart + Math.sin(this.angle) * this.radius;
-		this.angle += this.speed;
+			if(this.angle > -(5*Math.PI/2)){
+				this.x = this.xstart + Math.cos(this.angle) * this.radius;
+				this.y = this.ystart + Math.sin(this.angle) * this.radius;
+				this.angle += this.speed;
 
-		ctx.beginPath();
-		ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI);
-		ctx.fillStyle = this.color;
-		ctx.fill();
+				ctx.beginPath();
+				ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI);
+				ctx.fillStyle = this.color;
+				ctx.fill();
+			}
+			if (this.angle <= -(5*Math.PI/2)) {
+				this.x -= 10;
+
+				ctx.beginPath();
+				ctx.arc(this.x, this.y, this.size, 0, 2*Math.PI);
+				ctx.fillStyle = this.color;
+				ctx.fill();
+			}
 		}
 	},
 	reset: function(){
 		this.x = 315;
 		this.y = 35;
-		this.angle = 180;
+		this.angle = -(Math.PI/2);
 	}
 }
 
