@@ -38,6 +38,9 @@ stop.addEventListener("click", function() {
 	play.textContent = "Play";
 }, true);
 
+/**
+
+**/
 play.addEventListener("click", function() {
 	if (status === "null") {
 		start = Date.now();
@@ -51,7 +54,16 @@ play.addEventListener("click", function() {
 }, true);
 
 
-
+/**
+Håller koll på tiden.
+Först sätts ett slider value som är frame(vilken frame den är på)
+ms är milisekunder som håller koll på tiden i millisekunder
+sen anropas funktionen clearcannvas för att renska canvas innan nästa bild ritas ut
+Sen ökar alla värden (x,y) för just den framen och ritas ut.
+Sen skriver den ut tiden och framen för just den framen så att man kan se.
+Sen är det en if sats som tittar om framsen är lika stor som maxframes, det vill säga om animationen är slut, då slutar animationen(sätter status till null)
+Sist ökar framen för att kunna fortsätta med animationen
+**/ 
 function timeline() {
 
 	slider.value = frame;
@@ -70,7 +82,8 @@ function timeline() {
 }
 
 /**
-Ränsar Canvas från objekt
+Ränsar Canvas från objekt 
+Används så att alla frames inte ritas ut för då blir det bara ett sträck efter objekten
 **/
 function clearCanvas() {
 	ctx.fillStyle = "rgb(250,250,230)";
@@ -80,6 +93,7 @@ function clearCanvas() {
 /**
 Skriver ut tiden och bildruter det tar för att uförna animationen
 Updateras över tid
+Den finns för att se hur lång animationen tar och hur många frames
 **/
 function renderTime(f, time) {
 	ctx.font = "16px Encode Sans";
