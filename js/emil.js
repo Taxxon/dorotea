@@ -50,12 +50,12 @@ play.addEventListener("click", function() {
 	}
 }, true);
 
+
+
 function timeline() {
 
 	slider.value = frame;
 	ms = Date.now() - start;
-	//console.log("Seconds elapsed = " + ms/1000);
-
 	clearCanvas();
 	bollYellow.animate(frame);
 	bollBlue.animate(frame);
@@ -69,11 +69,18 @@ function timeline() {
 	frame++;
 }
 
+/**
+Ränsar Canvas från objekt
+**/
 function clearCanvas() {
 	ctx.fillStyle = "rgb(250,250,230)";
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 } 
 
+/**
+Skriver ut tiden och bildruter det tar för att uförna animationen
+Updateras över tid
+**/
 function renderTime(f, time) {
 	ctx.font = "16px Encode Sans";
 	ctx.fillStyle = "black";
